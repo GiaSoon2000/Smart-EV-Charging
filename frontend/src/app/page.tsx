@@ -51,6 +51,7 @@ export default function EVOptimizerPage() {
   const [result, setResult] = useState<PredictResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [countdown, setCountdown] = useState<string>("—");
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
   /** -----------------------------
    * Resolve start/end absolute timestamps
@@ -125,7 +126,7 @@ export default function EVOptimizerPage() {
     setResult(null);
 
     try {
-      const res = await fetch("http://localhost:8000/predict", {
+      const res = await fetch("${API_BASE}/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
